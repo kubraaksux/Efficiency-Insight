@@ -20,6 +20,8 @@ git clone https://github.com/kubraaksux/Efficiency-Insight.git
 cd Efficiency-Insight
 Run the script:
 python algorithm_analysis.py
+```
 
 ## Authors
-Kubra Aksu
+Kübra Aksu
+Baturhan Akbulut
