@@ -23,5 +23,5 @@ python algorithm_analysis.py
 ```
 
 ## Authors
-Kübra Aksu
-Baturhan Akbulut
+- Kübra Aksu
+- Baturhan Akbulut
