@@ -40,7 +40,7 @@ def execute_algorithm(arr):
     return y
 
 
-def generate_different_cases(test_sizes,q_number):
+def generate_different_cases(test_sizes):
 
 
 
@@ -53,19 +53,7 @@ def generate_different_cases(test_sizes,q_number):
     test_cases = {}
 
 
-    #Decide best or worst case according to the question
-    if q_number==1:
-        #doesn't matter for this
-        best=2
-        worst=0
-
-    elif q_number==2:
-        best=2
-        worst=1
-
-    elif q_number==3:
-        best=1
-        worst=0
+    
 
 
 
@@ -86,10 +74,10 @@ def generate_different_cases(test_sizes,q_number):
             # Worst case: All elements are 1.
             # Average case: Random 0s, 1s, and 2s
 
-            'best': [best] * size,
+            'best': [1] * size,
             # 'Best' case: All '2's - Requires fewer operations within the algorithm's structure,
             # as it avoids the more complex nested loops that are activated by '0's and '1's.
-            'worst': [worst] * size,
+            'worst': [0] * size,
             # 'Worst' case: All '1's - Engages the most complex part of the algorithm with the
             # deepest nested loops, resulting in the highest number of operations.
 
@@ -136,14 +124,6 @@ def measure_time(algorithm, cases):
 test_sizes = [1, 5, 10, 20, 30, 40, 50, 60,
               70, 80, 90, 100, 110, 120, 130, 140, 150]
 
-print("QUESTION 1")
 test_cases = generate_different_cases(test_sizes,1)
 measure_time(execute_algorithm, test_cases)
-print("QUESTION 2")
-test_cases = generate_different_cases(test_sizes,2)
-measure_time(execute_algorithm, test_cases)
-print("QUESTION 3")
-test_cases = generate_different_cases(test_sizes,3)
-measure_time(execute_algorithm, test_cases)
-#test_cases = generate_different_cases(test_sizes,4)
-#measure_time(execute_algorithm, test_cases)
+
