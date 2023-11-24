@@ -58,19 +58,13 @@ def generate_different_cases(test_sizes):
             # Average case: Random 0s, 1s, and 2s
 
             'best': [2] * size,
-            # Best case: An array with all elements as '2'. This is considered the best case
-            # for the algorithm because, according to its logic, the least number of operations
-            # occur when the array elements are '2'. The loop that processes elements with value '2'
-            # performs fewer operations compared to the loops for '0' and '1'.
+            # 'Best' case: All '2's - Requires fewer operations within the algorithm's structure,
+            # as it avoids the more complex nested loops that are activated by '0's and '1's.
             'worst': [1] * size,
-            # Worst case: An array with all elements as '1'. This case is designated as the worst
-            # because, as per the algorithm's structure, it forces the maximum number of operations.
-            # When the element is '1', the algorithm enters into a triple-nested loop, which
-            # causes a significantly higher count of operations, especially as the size of the array grows.
+            # 'Worst' case: All '1's - Engages the most complex part of the algorithm with the
+            # deepest nested loops, resulting in the highest number of operations.
             'average': [random.randint(0, 2) for _ in range(size)]
-            # Average case: An array with a random combination of 0s, 1s, and 2s. This represents a typical
-            # scenario where the input is not skewed towards any particular case. It provides a more
-            # realistic measure of the algorithm's average performance over a variety of inputs.
+            # 'Average' case: A random mix of '0's, '1's, and '2's to simulate a typical input array.
         }
     return test_cases
 
