@@ -42,9 +42,6 @@ def execute_algorithm(arr):
 
 def generate_different_cases(test_sizes):
 
-
-
-
     # Generates test cases of different sizes and types (best, worst, average).
     # test_sizes (list) -> A list of integers representing the sizes of test cases to generate.
     # dict -> Dictionary containing the test cases keyed by size and case type.
@@ -52,21 +49,14 @@ def generate_different_cases(test_sizes):
     # Initialize an empty dictionary to hold our test cases.
     test_cases = {}
 
-
-    
-
-
-
     for size in test_sizes:
 
         # For each size, create a dictionary entry with sub-entries for best, worst, and average cases.
 
-
         # 'Average' case: A random mix of '0's, '1's, and '2's to simulate a typical input array.
-        average_list=[]
+        average_list = []
         for i in range(10):
             average_list.append([random.randint(0, 2) for _ in range(size)])
-
 
         test_cases[size] = {
 
@@ -81,9 +71,9 @@ def generate_different_cases(test_sizes):
             # 'Worst' case: All '1's - Engages the most complex part of the algorithm with the
             # deepest nested loops, resulting in the highest number of operations.
 
-            
+
             'average': average_list
-            
+
         }
     return test_cases
 
@@ -96,19 +86,19 @@ def measure_time(algorithm, cases):
 
     for size, tests in cases.items():
         for case_type, test_data in tests.items():
-            
-            if case_type=="average":
-                total_time=0
-                
+
+            if case_type == "average":
+                total_time = 0
+
                 for eachList in test_data:
                     start_time = time.time()
                     algorithm(eachList)
                     end_time = time.time()
                     elapsed_time = end_time - start_time
-                    total_time+=elapsed_time
+                    total_time += elapsed_time
                     print(
-                    f"Case: {case_type.capitalize()} Size: {size} Elapsed Time (s): {elapsed_time:.6f}")
-                average_time=total_time/10.
+                        f"Case: {case_type.capitalize()} Size: {size} Elapsed Time (s): {elapsed_time:.6f}")
+                average_time = total_time/10.
                 print(
                     f"Case: {case_type.capitalize()} Average Elapsed Time (s): {average_time:.6f}")
 
@@ -124,6 +114,5 @@ def measure_time(algorithm, cases):
 test_sizes = [1, 5, 10, 20, 30, 40, 50, 60,
               70, 80, 90, 100, 110, 120, 130, 140, 150]
 
-test_cases = generate_different_cases(test_sizes,1)
+test_cases = generate_different_cases(test_sizes)
 measure_time(execute_algorithm, test_cases)
-
