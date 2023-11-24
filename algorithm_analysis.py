@@ -135,10 +135,14 @@ def measure_time(algorithm, cases):
 
 test_sizes = [1, 5, 10, 20, 30, 40, 50, 60,
               70, 80, 90, 100, 110, 120, 130, 140, 150]
+
+print("QUESTION 1")
 test_cases = generate_different_cases(test_sizes,1)
 measure_time(execute_algorithm, test_cases)
+print("QUESTION 2")
 test_cases = generate_different_cases(test_sizes,2)
 measure_time(execute_algorithm, test_cases)
+print("QUESTION 3")
 test_cases = generate_different_cases(test_sizes,3)
 measure_time(execute_algorithm, test_cases)
 #test_cases = generate_different_cases(test_sizes,4)
