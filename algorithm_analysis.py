@@ -40,7 +40,10 @@ def execute_algorithm(arr):
     return y
 
 
-def generate_different_cases(test_sizes):
+def generate_different_cases(test_sizes,q_number):
+
+
+
 
     # Generates test cases of different sizes and types (best, worst, average).
     # test_sizes (list) -> A list of integers representing the sizes of test cases to generate.
@@ -48,23 +51,51 @@ def generate_different_cases(test_sizes):
 
     # Initialize an empty dictionary to hold our test cases.
     test_cases = {}
+
+
+    #Decide best or worst case according to the question
+    if q_number==1:
+        #doesn't matter for this
+        best=2
+        worst=0
+
+    elif q_number==2:
+        best=2
+        worst=1
+
+    elif q_number==3:
+        best=1
+        worst=0
+
+
+
     for size in test_sizes:
 
         # For each size, create a dictionary entry with sub-entries for best, worst, and average cases.
+
+
+        # 'Average' case: A random mix of '0's, '1's, and '2's to simulate a typical input array.
+        average_list=[]
+        for i in range(10):
+            average_list.append([random.randint(0, 2) for _ in range(size)])
+
+
         test_cases[size] = {
 
             # Best case: All elements are 2.
             # Worst case: All elements are 1.
             # Average case: Random 0s, 1s, and 2s
 
-            'best': [2] * size,
+            'best': [best] * size,
             # 'Best' case: All '2's - Requires fewer operations within the algorithm's structure,
             # as it avoids the more complex nested loops that are activated by '0's and '1's.
-            'worst': [1] * size,
+            'worst': [worst] * size,
             # 'Worst' case: All '1's - Engages the most complex part of the algorithm with the
             # deepest nested loops, resulting in the highest number of operations.
-            'average': [random.randint(0, 2) for _ in range(size)]
-            # 'Average' case: A random mix of '0's, '1's, and '2's to simulate a typical input array.
+
+            
+            'average': average_list
+            
         }
     return test_cases
 
@@ -77,15 +108,38 @@ def measure_time(algorithm, cases):
 
     for size, tests in cases.items():
         for case_type, test_data in tests.items():
-            start_time = time.time()
-            algorithm(test_data)
-            end_time = time.time()
-            elapsed_time = end_time - start_time
-            print(
-                f"Case: {case_type.capitalize()} Size: {size} Elapsed Time (s): {elapsed_time:.6f}")
+            
+            if case_type=="average":
+                total_time=0
+                
+                for eachList in test_data:
+                    start_time = time.time()
+                    algorithm(eachList)
+                    end_time = time.time()
+                    elapsed_time = end_time - start_time
+                    total_time+=elapsed_time
+                    print(
+                    f"Case: {case_type.capitalize()} Size: {size} Elapsed Time (s): {elapsed_time:.6f}")
+                average_time=total_time/10.
+                print(
+                    f"Case: {case_type.capitalize()} Average Elapsed Time (s): {average_time:.6f}")
+
+            else:
+                start_time = time.time()
+                algorithm(test_data)
+                end_time = time.time()
+                elapsed_time = end_time - start_time
+                print(
+                    f"Case: {case_type.capitalize()} Size: {size} Elapsed Time (s): {elapsed_time:.6f}")
 
 
 test_sizes = [1, 5, 10, 20, 30, 40, 50, 60,
               70, 80, 90, 100, 110, 120, 130, 140, 150]
-test_cases = generate_different_cases(test_sizes)
+test_cases = generate_different_cases(test_sizes,1)
 measure_time(execute_algorithm, test_cases)
+test_cases = generate_different_cases(test_sizes,2)
+measure_time(execute_algorithm, test_cases)
+test_cases = generate_different_cases(test_sizes,3)
+measure_time(execute_algorithm, test_cases)
+#test_cases = generate_different_cases(test_sizes,4)
+#measure_time(execute_algorithm, test_cases)
