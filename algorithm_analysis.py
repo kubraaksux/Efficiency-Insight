@@ -74,10 +74,10 @@ def generate_different_cases(test_sizes):
             # Worst case: All elements are 1.
             # Average case: Random 0s, 1s, and 2s
 
-            'best': [1] * size,
+            'best': [0] * size,
             # 'Best' case: All '2's - Requires fewer operations within the algorithm's structure,
             # as it avoids the more complex nested loops that are activated by '0's and '1's.
-            'worst': [0] * size,
+            'worst': [1] * size,
             # 'Worst' case: All '1's - Engages the most complex part of the algorithm with the
             # deepest nested loops, resulting in the highest number of operations.
 
@@ -124,6 +124,6 @@ def measure_time(algorithm, cases):
 test_sizes = [1, 5, 10, 20, 30, 40, 50, 60,
               70, 80, 90, 100, 110, 120, 130, 140, 150]
 
-test_cases = generate_different_cases(test_sizes,1)
+test_cases = generate_different_cases(test_sizes)
 measure_time(execute_algorithm, test_cases)
 
